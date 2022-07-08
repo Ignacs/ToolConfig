@@ -1,0 +1,409 @@
+set rtp +=~/.vim/plugged,~/.vim/plugged/*/autoload/
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" plugins - built-in
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" source ~/.vim/plugins/gtags-cscope.vim
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" neobundle
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" let iCanHazNeoBundle=1
+" let neobundle_readme=expand('~/.vim/bundle/neobundle.vim/README.md')
+" if !filereadable(neobundle_readme)
+" 	echo "Installing NeoBundle.."
+" 	echo ""
+" 	silent !mkdir -p ~/.vim/bundle
+" 	silent !git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
+" 	let iCanHazNeoBundle=0
+" 	ehco "Execute :NeoBundleInstall(!) in vim to install plugins"
+" endif
+" 
+" if has('vim_starting')
+" 	set nocompatible               " Be iMproved
+" 	set runtimepath+=~/.vim/bundle/neobundle.vim/
+" endif
+" 
+" 
+" call neobundle#begin(expand('~/.vim/bundle/'))
+" 
+" " Let NeoBundle manage NeoBundle
+" NeoBundleFetch 'Shougo/neobundle.vim'
+" 
+" " Recommended to install
+" " After install,  turn shell ~/.vim/bundle/vimproc,  (n, g)make -f
+" "    your_machines_makefile
+" NeoBundle 'Shougo/vimproc'
+
+
+" 
+" 
+" " My Bundles here:
+" "
+" " Note: You don't set neobundle setting in .gvimrc!
+" " Original repos on github
+" 
+" " -> Add plugins path here <-
+" 
+" "  EX:  plugins nerdtree https://github.com/scrooloose/nerdtree 
+" "  the plugins path is 'scrooloose/nerdtree'
+" NeoBundle 'scrooloose/nerdtree'
+" 
+" " NeoBundle 'skywind3000/quickmenu.vim'
+" NeoBundle 'skywind3000/vim-preview'
+" NeoBundle 'ludovicchabant/vim-gutentags'
+" NeoBundle 'skywind3000/gutentags_plus'
+" NeoBundle 'ycm-core/YouCompleteMe'
+" NeoBundle 'aceofall/gtags.vim'
+" NeoBundle 'multilobyte/gtags-cscope'
+"   
+" 
+" 
+" """ end """
+" call neobundle#end()
+" 
+" filetype plugin indent on     " Required!
+" "
+" " Brief help
+" " :NeoBundleList          - list configured bundles
+" " :NeoBundleInstall(!)    - install(update) bundles
+" " :NeoBundleClean(!)      - confirm(or auto-approve) removal of
+" " unused bundles
+" 
+" " Installation check.
+" NeoBundleCheck
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" end of neobundle
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vim-plug 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let iCanHazVimPlug=1
+let vim_plug_readme=expand('~/.vim/autoload/plug.vim')
+if !filereadable(vim_plug_readme)
+	echo "Installing vim-plug.."
+	echo ""
+	silent !mkdir -p ~/.vim/autoload
+	" silent !git clone https://github.com/junegunn/vim-plug ~/.vim/autoload
+	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	let iCanHazVimPlug=0
+	ehco "Execute :PlugInstall(!) in vim to install plugins"
+endif
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'scrooloose/nerdtree',  { 'on':  'NERDTreeToggle' }
+" Plug 'skywind3000/vim-preview'
+" Plug 'ludovicchabant/vim-gutentags'
+" Plug 'ycm-core/YouCompleteMe'
+
+Plug 'junegunn/vim-easy-align'
+Plug 'skywind3000/quickmenu.vim'
+
+
+" c tags
+" Plug 'skywind3000/gutentags_plus'
+" Plug 'multilobyte/gtags-cscope' " vim-plug cannot source it
+
+" C lang
+Plug 'dense-analysis/ale'
+" Plug 'jeaye/color_coded'
+
+" color theme
+Plug 'tomasr/molokai'
+
+" Plug 'scrooloose/syntastic'
+
+" version control 
+" Plug 'mhinz/vim-signify'
+" Plug 'tpope/vim-fugitive'
+
+
+" text object : statemanet, word 
+" i. and a. : argument object, can use 'di' or 'ci' in insert mode
+" ii and ai : 'vii' selecttion 'dii'/'cii' delete / replace 
+" if and af : vif / dif /cif 
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-syntax'
+Plug 'kana/vim-textobj-function',  { 'for':['c',  'cpp',  'vim',  'java'] }
+Plug 'sgur/vim-textobj-parameter'
+
+Plug 'tpope/vim-unimpaired'
+
+" function 
+" Plug 'Yggdroot/LeaderF'
+
+" http://vimcasts.org/blog/2013/01/oil-and-vinegar-split-windows-and-project-drawer/
+" project viewer
+Plug 'justinmk/vim-dirvish'
+
+" header / source file change
+Plug 'vim-scripts/a.vim'
+
+" prompt parameters
+Plug 'Shougo/echodoc.vim'
+
+" statusline 
+Plug 'vim-airline/vim-airline' , { 'for':['c',  'cpp',  'vim',  'java'] }
+Plug 'vim-airline/vim-airline-themes'
+
+
+" enhanced diff
+Plug 'chrisbra/vim-diff-enhanced'
+call plug#end()
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" end of vim-plug
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" nerdtree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nmap  <silent> <F4>        :NERDTreeToggle<CR>
+
+
+
+"-------------------------------------------------------------------------------
+" taglist.vim : toggle the taglist window
+" taglist.vim : define the title texts for make
+" taglist.vim : define the title texts for qmake
+"-------------------------------------------------------------------------------
+" noremap <silent> <F9>  <Esc><Esc>:Tlist<CR>
+"inoremap <silent> <F9>  <Esc><Esc>:Tlist<CR>
+
+let Tlist_GainFocus_On_ToggleOpen = 1
+let Tlist_Close_On_Select 				= 1
+
+let tlist_make_settings  = 'make;v:variables;t:targets;i:includes'
+let tlist_qmake_settings = 'qmake;t:SystemVariables'
+
+" if has("autocmd")
+"   " ----------  qmake : set filetype for *.pro  ----------
+"   autocmd BufNewFile,BufRead *.pro  set filetype=qmake
+" endif " has("autocmd")
+
+
+
+"-------------------------------------------------------------------------------
+" ale  " C language syntax checker
+"-------------------------------------------------------------------------------
+let g:ale_linters_explicit = 1
+let g:ale_completion_delay = 500
+let g:ale_echo_delay = 20
+let g:ale_lint_delay = 500
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+let g:airline#extensions#ale#enabled = 1
+
+let g:ale_c_gcc_options = '-Wall -O2 -std=c99 -Werror'
+let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
+let g:ale_c_cppcheck_options = ''
+let g:ale_cpp_cppcheck_options = ''
+
+let g:ale_sign_error = "\ue009\ue009"
+let g:ale_sign_warning = '>'
+hi! clear SpellBad
+hi! clear SpellCap
+hi! clear SpellRare
+hi! SpellBad gui=undercurl guisp=red
+hi! SpellCap gui=undercurl guisp=blue
+hi! SpellRare gui=undercurl guisp=magenta
+let g:ale_sign_column_always = 1
+
+
+let g:ale_fixers = {
+\   'c': ['gcc'],
+\   'cpp': ['gcc'],
+\}
+" let g:ale_linters = {
+" \   'javascript': ['eslint'],
+" \   'c': ['clang'],
+" \   'cpp': ['clang'],
+" \   'python': ['pylint']
+" \}
+let g:ale_statusline_format = ['E:%d', 'W:%d', 'ok']
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_lint_on_enter = 1
+let g:ale_set_signs = 1
+
+
+"-------------------------------------------------------------------------------
+" mhinz/vim-signify
+"-------------------------------------------------------------------------------
+" set signcolumn=yes
+
+"-------------------------------------------------------------------------------
+" ycm
+"-------------------------------------------------------------------------------
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_server_log_level = 'info'
+let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_complete_in_strings=1
+let g:ycm_key_invoke_completion = '<c-z>'
+set completeopt=menu,menuone
+noremap <c-z> <NOP>
+let g:ycm_semantic_triggers =  {
+           \ 'c, cpp, python, java, go, erlang, perl': ['re!\w{2}'], 
+           \ 'cs, lua, javascript': ['re!\w{2}'], 
+           \ }
+
+"-------------------------------------------------------------------------------
+" Plug 'Yggdroot/LeaderF' " function list
+" :LeaderfFunction!`
+"-------------------------------------------------------------------------------
+let g:Lf_ShortcutF = '<c-p>'
+let g:Lf_ShortcutB = '<m-n>'
+noremap <c-n> :LeaderfMru<cr>
+noremap <m-p> :LeaderfFunction!<cr>
+noremap <m-n> :LeaderfBuffer<cr>
+noremap <m-m> :LeaderfTag<cr>
+let g:Lf_StlSeparator = { 'left': '',  'right': '',  'font': '' }
+
+let g:Lf_RootMarkers = ['.project',  '.root',  '.svn',  '.git']
+let g:Lf_WorkingDirectoryMode = 'Ac'
+let g:Lf_WindowHeight = 0.30
+let g:Lf_CacheDirectory = expand('~/.vim/cache')
+let g:Lf_ShowRelativePath = 0
+let g:Lf_HideHelp = 1
+let g:Lf_StlColorscheme = 'powerline'
+let g:Lf_PreviewResult = {'Function':0,  'BufTag':0}
+
+"-------------------------------------------------------------------------------
+"" @airline
+"-------------------------------------------------------------------------------
+"let g:airline#extensions#tabline#enabled = 1   " enable tabline
+"" fonts
+let g:airline_powerline_fonts = 1
+let g:airline_theme='bubblegum' " select theme
+let g:airline#extensions#tabline#enabled=1    "Smarter tab line: window / buffer
+"let g:airline#extensions#tabline#left_sep = ' '  "separater
+""let g:airline#extensions#tabline#left_alt_sep = '|'  "separater
+"let g:airline#extensions#tabline#formatter = 'default'  "formater
+let g:airline_left_sep=''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+let g:airline_symbols.linenr                   = ''
+let g:airline_symbols.maxlinenr                = '' 
+let w:airline_skip_empty_sections              = 1
+" let g:airline_section_b                        = '%{fugitive#head()}'
+let g:airline_section_c                        = ''
+let g:airline_section_x                        = '%{&filetype}'
+let g:airline_section_warning                  = ''
+
+let g:airline#extensions#tabline#enabled       = 1
+let g:airline#extensions#tabline#fnamemod      = ':~'
+let g:airline#extensions#tabline#fnamecollapse = 0
+
+let g:airline#extensions#branch#enabled              = 1
+let g:airline#extensions#branch#displayed_head_limit = 10
+
+
+"-------------------------------------------------------------------------------
+" syntastic  " C language syntax checker
+"-------------------------------------------------------------------------------
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_error_symbol='>>'
+" let g:syntastic_warning_symbol='>'
+" let g:syntastic_check_on_open=1
+" let g:syntastic_check_on_wq=0
+" let g:syntastic_enable_highlighting=1
+" let g:syntastic_python_checkers=['pyflakes']
+" let g:syntastic_javascript_checkers = ['jsl', 'jshint']
+" let g:syntastic_html_checkers=['tidy', 'jshint']
+" 
+" highlight SyntasticErrorSign guifg=white guibg=black
+" 
+" " to see error location list
+" function! ToggleErrors()
+"     let old_last_winnr = winnr('$')
+"     lclose
+"     if old_last_winnr == winnr('$')
+"         " Nothing was closed, open syntastic error location panel
+"         Errors
+"     endif
+" endfunction
+" nnoremap <Leader>s :call ToggleErrors()<cr>
+" " nnoremap <Leader>sn :lnext<cr>
+" " nnoremap <Leader>sp :lprevious<cr>
+" let g:syntastic_enable_signs = 1
+" " Auto open Locaton List, if syntastic conflicts with other plugin , close it
+" let g:syntastic_always_populate_loc_list = 1
+" " Auto open Locaton List, default is 2, error detected doesn't open Location list, auto close when fixed error 
+" " 1 : auto close / open 
+" " 0 : no action
+" " 3 : auto open , doesn't close auto
+" let g:syntastic_auto_loc_list = 1
+" " location list height
+" let g:syntastic_loc_list_height = 5
+" " check when open
+" let g:syntastic_check_on_open = 1
+" " auto jump to error 
+" let g:syntastic_auto_jump = 0
+" " check real-time, if response lag, chage to 1
+" let g:syntastic_check_on_wq = 0
+" " highligth error 
+" let g:syntastic_enable_highlighting=1
+" " syntastic support C++11
+" " let g:syntastic_cpp_compiler = 'clang++'
+" " let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
+" let g:syntastic_cpp_checkers = ['gcc']
+" let g:syntastic_cpp_compiler = 'gcc'
+" let g:syntastic_cpp_compiler_options = '-std=c++11'
+" " python linter 
+" let g:syntastic_python_checkers = ['pyflakes']
+" "fixed syntastic :lnext :lprev jumping error, mapping to sn / sp
+" function! <SID>LocationPrevious()                       
+"   try                                                   
+"     lprev                                               
+"   catch /^Vim\%((\a\+)\)\=:E553/                        
+"     llast                                               
+"   endtry                                                
+" endfunction                                             
+" function! <SID>LocationNext()                           
+"   try                                                   
+"     lnext                                               
+"   catch /^Vim\%((\a\+)\)\=:E553/                        
+"     lfirst                                              
+"   endtry                                                
+" endfunction                                             
+" nnoremap <silent> <Plug>LocationPrevious    :<C-u>exe 'call <SID>LocationPrevious()'<CR>                                        
+" nnoremap <silent> <Plug>LocationNext        :<C-u>exe 'call <SID>LocationNext()'<CR>
+" nmap <silent> sp    <Plug>LocationPrevious              
+" nmap <silent> sn    <Plug>LocationNext
+" " close checker , to prevent copy error message by mouse
+" nnoremap <silent> <Leader>ec :SyntasticToggleMode<CR>
+" function! ToggleErrors()
+"     let old_last_winnr = winnr('$')
+"     lclose
+"     if old_last_winnr == winnr('$')
+"         " Nothing was closed, open syntastic error location panel
+"         Errors
+"     endif
+" endfunction
+"
+" "-------------------------------------------------------------------------------
+" " color_coded  " C syntax color highlight
+" "-------------------------------------------------------------------------------
+" "{ 'for':['c',  'cpp',  'vim',  'java'] }
+" let g:color_coded_filetypes = ['c', 'cpp', 'objc']
+" let g:color_coded_enabled = 1
+" " Disable color_coded in diff mode
+" if &diff
+"   let g:color_coded_enabled = 0
+" endif

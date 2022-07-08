@@ -1,0 +1,249 @@
+" define leader 
+let mapleader=";"
+
+"-------------------------------------------------------------------------------
+"  Hot keys
+"-------------------------------------------------------------------------------
+" Remap VIM 0 to first non-blank character
+map 0 ^
+
+" copy selected string into clipboard
+vnoremap <Leader>y "+y
+
+" paste system clipboard into selected string
+" "" not working in text-mode vim
+" nmap <Leader>p "+p
+
+" dont save and exit all sub-windows
+nmap <Leader>Q :qa!<CR>
+
+" visit all sub-windows
+" nnoremap nw <C-W><C-W>
+
+" dont conrol indent when paste 
+" nmap <Leader>PP :set paste<CR>
+" conrol indent 
+" nmap <Leader>pp :set nopaste<CR>
+
+"-------------------------------------------------------------------------------
+"  some additional hot keys
+"-------------------------------------------------------------------------------
+"    F1   -  switch paste mode
+"    F2   -  write file without confirmation
+"    F3   -  call file explorer Ex
+"    F4   -  show tag under curser in the preview window (tagfile must exist!)
+"    F5   -  open quickfix error window
+"    F6   -  close quickfix error window
+"    F7   -  display previous error
+"    F8   -  display next error   
+"-------------------------------------------------------------------------------
+" switch paste mode toggle
+" nnoremap <F1> <Esc>set paste!<C-G>
+map    <silent> <F1> :set paste!<CR>
+" map   <silent> <F2>        :write<CR>
+map   <silent> <F2>        :set nu! nu?<CR><Esc>:set relativenumber!  relativenumber?<CR><Esc>:set fdc=0<CR>
+" map   <silent> <F3>        :Explore<CR>
+map   <silent> <F3>        :set wrap! wrap?<CR><Esc>
+"nmap  <silent> <F4>        :exe ":ptag ".expand("<cword>")<CR>
+map   <silent> <F5>        :copen<CR>
+map   <silent> <F6>        :cclose<CR>
+map   <silent> <F7>        :cp<CR>
+map   <silent> <F8>        :cn<CR>
+"
+" imap  <silent> <F2>   <Esc>:write<CR>
+" imap  <silent> <F3>   <Esc>:Explore<CR>
+" imap  <silent> <F4>   <Esc>:exe ":ptag ".expand("<cword>")<CR>
+imap  <silent> <F5>   <Esc>:copen<CR>
+imap  <silent> <F6>   <Esc>:cclose<CR>
+imap  <silent> <F7>   <Esc>:cp<CR>
+imap  <silent> <F8>   <Esc>:cn<CR>
+
+" Remap VIM 0 to first non-blank character
+map 0 ^
+"-------------------------------------------------------------------------------
+" Fast switching between buffers
+" The current buffer will be saved before switching to the next one.
+" Choose :bprevious or :bnext
+"-------------------------------------------------------------------------------
+ map  <silent> <s-tab>  <Esc>:if &modifiable && !&readonly && 
+     \                  &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
+imap  <silent> <s-tab>  <Esc>:if &modifiable && !&readonly && 
+     \                  &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
+"
+"-------------------------------------------------------------------------------
+" Leave the editor with Ctrl-q : Write all changed buffers and exit Vim
+"-------------------------------------------------------------------------------
+" nmap  <C-q>    :wqa<CR>
+"
+"-------------------------------------------------------------------------------
+" comma always followed by a space
+"-------------------------------------------------------------------------------
+inoremap  ,  ,<Space>
+"
+"-------------------------------------------------------------------------------
+" autocomplete parenthesis, brackets and braces
+"-------------------------------------------------------------------------------
+inoremap ( ()<Left>
+inoremap [ []<Left>
+inoremap { {}<Left>
+"
+vnoremap ( s()<Esc>P<Right>%
+vnoremap [ s[]<Esc>P<Right>%
+vnoremap { s{}<Esc>P<Right>%
+"
+"-------------------------------------------------------------------------------
+" autocomplete quotes (visual and select mode)
+"-------------------------------------------------------------------------------
+xnoremap  '  s''<Esc>P<Right>
+" xnoremap  "  s""<Esc>P<Right>
+xnoremap  `  s``<Esc>P<Right>
+"
+"-------------------------------------------------------------------------------
+" Change the working directory to the directory containing the current file
+"-------------------------------------------------------------------------------
+if has("autocmd")
+  autocmd BufEnter * :lchdir %:p:h
+endif " has("autocmd")
+"
+"
+" Map auto complete of (, ", ', [
+inoremap @1 ()<esc>i
+inoremap @2 []<esc>i
+inoremap @3 {}<esc>i
+inoremap @4 {<esc>o}<esc>O
+inoremap @q ''<esc>i
+inoremap @e ""<esc>i
+inoremap @t <><esc>i
+
+""""""""""""""""""""""""""""""
+" => Visual mode related
+""""""""""""""""""""""""""""""
+" Visual mode pressing * or # searches for the current selection
+" Super useful! From an idea by Michael Naumann
+vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
+vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
+
+" map <F11> //* <C-R>=strftime("%Y-%m-%d")<BAR><CR><C-R>
+" map <C-F11> i <C-R>=strftime("20%y%m%d %H:%M:%S")<BAR><CR>
+
+" switch between header/source with F4
+map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+" recreate tags file with F5
+ "map <F5> :!ctags -R ¡Vc++-kinds=+p ¡Vfields=+iaS ¡Vextra=+q .<CR>
+" map <F5> :!ctags -R<CR>
+
+" Using 'CTRL-spacebar', the result is displayed in new horizontal window.
+ nmap <C-@>s :scs find s <C-R>=expand("<cword>")<CR><CR>
+ nmap <C-@>g :scs find g <C-R>=expand("<cword>")<CR><CR>
+ nmap <C-@>c :scs find c <C-R>=expand("<cword>")<CR><CR>
+ nmap <C-@>t :scs find t <C-R>=expand("<cword>")<CR><CR>
+ nmap <C-@>e :scs find e <C-R>=expand("<cword>")<CR><CR>
+ nmap <C-@>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
+ nmap <C-@>i :scs find i <C-R>=expand("<cfile>")<CR><CR>
+":nmap <C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR>
+
+""""""""""""""""""""""""""""""
+" in Insert mode 
+" replace tesxt1 with text2
+" 	iabbrev text1 text2
+"
+" complex :iab <expr> dd strftime("[%e-%b-%Y %H:%M]")
+" " command to insert date and time
+" 	d+d+(space / enter)
+""""""""""""""""""""""""""""""
+" :iab <expr> dd strftime("%Y%m%d")
+inoreabbrev <expr> dd strftime("%Y%m%d")
+" inoreabbrev <expr> dd strftime("%Y/%m/%d")
+" :iab <expr> tt strftime("%H:%M:%S")
+inoreabbrev <expr> tt strftime("%H%M%S")
+" :iab <expr> dd strftime("[%e-%b-%Y %H:%M]")
+"
+"
+""" semi-auto add comment  command
+""" insert mode : c+c+s+(space / enter)
+" :iab <expr> cm "// modify, Ignacs Wu,"
+" :iab <expr> cms "// modify start, Ignacs Wu,"
+" :iab <expr> cme "// modify end, Ignacs Wu,"
+"
+" :iab <expr> cf  "// fixed, Ignacs Wu,"
+" :iab <expr> cfs "// fixed start, Ignacs Wu,"
+" :iab <expr> cfe "// fixed end, Ignacs Wu,"
+"
+inoreabbrev <expr> ccl strftime("// ignacs-%Y%m%d-RM#####-topic-")
+inoreabbrev <expr> cc strftime("// ignacs-%Y%m%d-RM#")
+inoreabbrev <expr> ccs strftime("%Y%m%d, ignacs")
+
+" inoreabbrev <expr> cas strftime("// ignacs-%Y%m%d-RM#####-topic")
+" inoreabbrev <expr> cae // add end, Ignacs Wu,
+"
+" :iab <expr> cr "// remove, Ignacs Wu,"
+" :iab <expr> crs "// remove start, Ignacs Wu,"
+" :iab <expr> cre "// remove end, Ignacs Wu,"
+" inoreabbrev <expr> cr strftime("// ignacs-%Y%m%d-RM#####-remove-")
+" inoreabbrev <expr> crs "// remove start, Ignacs Wu,"
+" inoreabbrev <expr> cre "// remove end, Ignacs Wu,"
+"
+" inoreabbrev <expr> cm strftime("// ignacs-%Y%m%d-RM#####-modify-")
+" inoreabbrev <expr> cms "// modify start, Ignacs Wu,"
+" inoreabbrev <expr> cme "// modify end, Ignacs Wu,"
+"
+" inoreabbrev <expr> cf  strftime("// ignacs-%Y%m%d-RM#####-fixed-")
+" inoreabbrev <expr> cfs "// fixed start, Ignacs Wu,"
+" inoreabbrev <expr> cfe "// fixed end, Ignacs Wu,"
+
+" :iab <expr> ca "// add, Ignacs Wu,"
+" :iab <expr> cas "// add start, Ignacs Wu,"
+" :iab <expr> cae "// add end, Ignacs Wu,"
+
+inoreabbrev iff if()<left>
+""""""""""""""""""""""""""""""
+" move around tabs. conflict with the original screen top/bottom
+" comment them out if you want the original H/L
+" go to prev tab
+"map <S-H> gT
+" go to next tab
+"map <S-L> gt
+
+" ,/ turn off search highlighting
+" nmap <leader>/ :nohl<CR>
+
+" ,g generates the header guard
+map <leader>g :call IncludeGuard()<CR>
+fun! IncludeGuard()
+   let basename = substitute(bufname(""), '.*/', '', '')
+   let guard = '_' . substitute(toupper(basename), '\.', '_', "H")
+   call append(0, "#ifndef " . guard)
+   call append(1, "#define " . guard)
+   call append( line("$"), "#endif // for #ifndef " . guard)
+endfun
+
+" map  <F12> :r! date +\%s<cr>
+" nmap <F12> <Plug>CscopeDBInit
+"
+"-------------------------------------------------------------------------------
+" close window (conflicts with the KDE setting for calling the process manager)
+"-------------------------------------------------------------------------------
+" noremap  <C-Esc>       :close<CR>
+"inoremap  <C-Esc>  <C-C>:close<CR>
+"
+"-------------------------------------------------------------------------------
+" Fast switching between buffers
+" The current buffer will be saved before switching to the next one.
+" Choose :bprevious or :bnext
+"-------------------------------------------------------------------------------
+ noremap  <silent> <s-tab>       :if &modifiable && !&readonly && 
+     \                      &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
+inoremap  <silent> <s-tab>  <C-C>:if &modifiable && !&readonly && 
+     \                      &modified <CR> :write<CR> :endif<CR>:bprevious<CR>
+
+"-------------------------------------------------------------------------------
+" mapping commands in colon mode 
+"-------------------------------------------------------------------------------
+fun! SetupCommandAlias(from, to)
+exec 'cnoreabbrev <expr> '.a:from
+	  \ .' ((getcmdtype() is# ":" && getcmdline() is# "'.a:from.'")'
+	  \ .'? ("'.a:to.'") : ("'.a:from.'"))'
+endfun                                                                                                                                                                                                    
+call SetupCommandAlias("buf","buffers")
+"-------------------------------------------------------------------------------
+:

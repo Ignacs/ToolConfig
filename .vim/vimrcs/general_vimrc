@@ -1,0 +1,264 @@
+"===================================================================================
+" GENERAL SETTINGS
+"===================================================================================
+
+
+" copy indent from current line
+" set autoindent                  
+set ai 
+
+" change current working directory automatically
+set autochdir
+" if autochdir not work 
+" autocmd BufEnter * silent! lcd %:p:h
+
+" read open files again when changed outside Vim
+" set autoread                    
+" au FocusGained,BufEnter * checktime
+
+" Automatically save before commands like :next and :make
+set autowrite        
+
+" backspacing over everything in insert mode
+set backspace=indent,eol,start  
+
+" keep a backup file
+" set backup                      
+
+" specified backup folder
+set backupdir=./.backup,.,/tmp 	
+
+" which directory to use for the file browser
+set browsedir=current           
+
+" stay with backspace, del after move the cursor
+set bs=2
+
+" Read the error file and jump to the first error.
+set cf
+
+" sync clipboard from vim's to system's
+" EX: copy whole line is 'yy'
+"     copy whole line to system's clipboard
+set clipboard=unnamed
+
+
+" scan the files given with the 'dictionary' option
+set complete+=k                 
+
+" confirmation before execute commands.
+set confirm      
+
+" highlight cursorline cterm=NONE ctermbg=7
+set cursorline
+" Modify background color of Cursorline, remove the underline of cursorline
+hi Cursorline cterm=NONE ctermbg=16 ctermfg=17 guibg=#771c1c 
+
+" Highlight the screen column of the cursor with CursorColumn
+set cursorcolumn
+" Modify background color of Cursorcolumn, remove the underline of cursorcolumn
+hi Cursorcolumn cterm=NONE ctermbg=DarkGrey guibg=#771c1c 
+
+" specified swap folder
+set directory=.,./.backup,/tmp	
+
+" Replace Tab with space
+" set expandtab
+
+" config file for 'vi' 
+" set exrc
+"
+" set tenc=big-5
+
+" 'foldmethod'
+set fdm=indent
+
+" 'foldcolumn'
+" When non-zero, a column with the specified width is shown at the side
+" 	of the window which indicates open and closed folds.
+set fdc=6
+
+" How many tenths of a second to blink when matching brackets
+" set match=2
+
+" Use mouse only in Normal and visual modes, i.e. cancel mouse in Insert mode.
+" set mouse=nv 
+" set mouse=a      " Enable mouse usage (all modes)
+set mouse= " DONT attach any option, that's for remote ssh, selected by mouse
+
+" Uncomment the next line to make Vim more Vi-compatible
+" NOTE: debian.vim sets 'nocompatible'.  Setting 'compatible' changes numerous
+" options, so any other options should be set AFTER setting 'compatible'.
+set nocompatible
+
+" Turn off BEEP
+set noeb
+set noerrorbells
+set novisualbell
+
+" No annoying sound on errors
+set t_vb=
+set tm=500
+
+" visual bell instead of beeping
+" set visualbell                  
+
+
+
+" Highlight the matching keyword
+" set hlsearch
+set hls 						
+
+" A buffer becomes hidden when it is abandoned
+set hid
+
+" keep lines of command line history
+" set history=50                  
+
+" Ignore case when search
+set ic
+"set ignorecase       
+
+" Incremental search
+set incsearch        
+
+" Don't redraw while executing macros (good performance config)
+set lazyredraw
+
+" Avoid garbled characters in Chinese language windows OS
+set langmenu=en
+
+" Always show status line
+set laststatus=2
+
+" strings to use in 'list' mode
+set listchars=tab:>.,eol:\$     
+
+" For regular expressions turn magic on
+set magic
+
+"===================================================================================
+" Folding
+"===================================================================================
+" auto-folding
+set foldenable
+
+"set foldmethod=syntax
+set foldmethod=indent
+
+" depth of fold at begin of line 
+set foldcolumn=1
+
+" the foldlevel of line in the current buffer
+set foldlevel=99
+"" set paste mode( paste from mosue) , but it will disable iab / abbr
+" set paste 
+
+" print options
+" List of items that control the format of the output of |:hardcopy|.
+set popt=left:8pc,right:3pc     
+
+" show line number 
+set nu
+
+" relative line number
+set relativenumber
+
+" show the cursor position all the time
+" {not available when compiled without the
+" |+cmdline_info| feature}
+" set ruler                       
+" set ru  
+
+" Keep 3 line in both page top and bottom 
+set scrolloff=3
+
+" 
+set secure
+
+" number of spaces to use for each step of indent
+set shiftwidth=4		
+
+" Show (partial) command in the last line of the screen.
+set showcmd				
+
+" When a bracket is inserted, briefly jump to the matching one.
+set showmatch
+
+"Smart indent
+" #if #define , for c preprocessor line
+set si 					
+
+" Do smart case matching
+set smartcase        
+
+" Set 7 lines to the cursor - when moving vertically using j/k
+set so=7
+
+" Use hard tabs as far as possible
+set smarttab
+
+" turn syntax highlighting on
+set t_Co=256
+
+" number of spaces that a <Tab> counts for
+set tabstop=4		
+
+" Allow specified keys that move the cursor left/right to move to the
+" previous/next line when the cursor is on the first/last character in
+" the line.  
+set whichwrap+=<,>,h,l
+
+" command-line completion in an enhanced mode
+set wildmenu                    
+
+" ignore these extensions
+set wildignore=*.pyc,*.bak,*.o,*.e,*~,*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+
+" set the min width of a window to 0 so we can maximize others
+set wmw=0                     
+
+"Wrap lines
+set wrap 				
+
+" Vim5 and later versions support syntax highlighting. Uncommenting the
+" following enables syntax highlighting by default.
+if has("syntax")
+  syntax on
+endif
+
+
+" Automatically create .backup directory, writable by the group.
+if filewritable(".") && ! filewritable(".backup")
+	silent execute '!umask 002; mkdir .backup'
+endif
+
+" Delete trailing white space on save, useful for some filetypes ;)
+fun! CleanExtraSpaces()
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    silent! %s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
+endfun
+
+if has("autocmd")
+    autocmd BufWritePre *.c,*.h,*.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+endif
+
+" ignore space in diffmode
+if &diff
+     map gs :call IwhiteToggle()<CR>
+     function! IwhiteToggle()
+       if &diffopt =~ 'iwhite'
+         	set diffopt-=iwhite
+       else
+         	set diffopt+=iwhite
+       endif
+     endfunction
+ endif
+
+" use patience algrothm to diff
+if has("patch-8.1.0360")
+    set diffopt+=internal,algorithm:patience
+endif

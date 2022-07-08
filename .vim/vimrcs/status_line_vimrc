@@ -1,0 +1,25 @@
+" Height of the command bar
+set cmdheight=1
+
+" Format the statusline
+" set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{CurDir()}%h\ \ \ Line:\ %l/%L:%c
+" set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ Line:\ %l/%L:%c
+"set statusline=
+"set statusline+=%4*%<\%m%<[%f\%r%h%w]\ 
+"set statusline+=[%{&ff},%{&fileencoding},%Y]
+"set statusline+=%=\[Position=%l,%v,%p%%]
+"set statusline+=%1*\[%n]                                  "buffernr
+"set statusline+=%2*\ %<%F\                                "File+path
+"set statusline+=%3*\ %=\ %{''.(&fenc!=''?&fenc:&enc).''}\ "Encoding
+"set statusline+=%4*\ %{(&bomb?\",BOM\":\"\")}\            "Encoding2
+"set statusline+=%5*\ %{&ff}\                              "FileFormat (dos/unix..)
+"set statusline+=%6*\ row:%l/%L\ col:%03c\ (%03p%%)\             "Rownumber/total (%)
+"set statusline+=%0*\ \ %m%r%w\ %P\ \                      "Modified? Readonly? Top/bot
+"set statusline=%m%<%f\%r%h%w\ [%{&ff},%{&fileencoding}]\ %m%=\ %h%r\ %-19([%p%%]\ %3l,%02c%03V%)%y
+" set statusline=
+"set statusline=%#filepath#[%{expand('%:p')}]%#filetype#[%{strlen(&fenc)?&fenc:&enc},\ %{&ff},\ %{strlen(&filetype)?&filetype:'plain'}]%#filesize#%{FileSize()}%=%#position#%c,%l/%L\ [%3p%%]
+" set statusline+=%#filepath#[%{expand('%:p')}%m]
+" set statusline+=%#filetype#[%{strlen(&fenc)?&fenc:&enc},\ %{&ff},\ %{strlen(&filetype)?&filetype:'plain'}]
+" set statusline+=%#filesize#%{FileSize()}
+" set statusline+=%=%#position#%c,%l/%L\ [%3p%%]
+

@@ -1,0 +1,24 @@
+
+filetype off                  " required
+
+" Uncomment the following to have Vim load indentation rules and plugins
+" according to the detected filetype.
+if has("autocmd")
+    filetype indent plugin on
+endif
+
+" set fenc=big-5
+
+" for CJK language
+if has("multi_byte")
+	set encoding=utf-8
+	setglobal fileencoding=big5
+	set fileencoding=big5
+	set bomb
+	set termencoding=utf-8
+	set fileencodings=ucs-bom,big5,utf-8,latin1
+	set guifont=-misc-fixed-medium-r-normal-*-18-120-100-100-c-90-iso10646-1
+	set guifontwide=-misc-fixed-medium-r-normal-*-18-120-100-100-c-180-iso10646-1
+else
+	echoerr "Sorry, this version of (g)vim was not compiled with multi_byte"
+endif

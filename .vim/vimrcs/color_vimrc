@@ -1,0 +1,69 @@
+"===================================================================================
+" COLOR SETTINGS
+"===================================================================================
+
+" If using a dark background within the editing area and syntax highlighting
+" turn on this option as well
+set background=dark
+
+" color setting
+colorscheme molokai 
+" colorscheme phd
+" colorscheme solarized
+
+
+" vimdifff use different color setting
+if &diff
+	" set t_Co=16
+
+    " colorscheme evening
+    " colorscheme mourning
+    " colorscheme SerialExperimentsLain
+    " colorscheme shadesofamber
+    " colorscheme ibmedit
+    " colorscheme darkblue
+	" colorscheme blue  
+	" colorscheme darkblue  
+	" colorscheme default  
+	" colorscheme delek  
+	" colorscheme desert  
+	" colorscheme elflord  
+	" colorscheme evening  
+	" colorscheme koehler  
+	" colorscheme morning  
+	" colorscheme murphy  
+	" colorscheme pablo  
+	" colorscheme peachpuff  
+	" colorscheme phd  
+	" colorscheme ron  
+	" colorscheme shine  
+	" colorscheme slate  
+	" colorscheme solarized  
+	" colorscheme torte  
+	" colorscheme zellner
+
+
+	" highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+	" highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+	" highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
+	" highlight DiffText   cterm=bold ctermfg=10 ctermbg=88 gui=none guifg=bg guibg=Red
+endif
+
+" set diff color scheme
+" /usr/share/vim/vim72/syntax/diff.vim
+"hi diffAdded ctermfg=Green ctermbg=DarkGray guifg=Green
+"hi diffRemoved ctermfg=Red ctermbg=DarkGray guifg=Red
+
+" set color of comment 
+"highlight Comment ctermfg=cyan
+
+
+
+
+  
+
+"-------------------------------------------------------------------------------
+" Molokai  
+"-------------------------------------------------------------------------------
+let g:molokai_original = 1
+let g:rehash256 = 1
