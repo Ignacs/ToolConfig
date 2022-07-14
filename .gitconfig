@@ -1,31 +1,32 @@
-[color]
-	ui = true
-	diff = auto
-	status = auto
-	branch = auto
-	log = auto
-	grep = auto
 [alias]
-	st = status
-	ci = commit
-	co = checkout
-	d = difftool
-	dt = difftool
-	br = branch
-	ls = log --graph --pretty=format:\"%h <%an> %ar %s\"
+        ls = log --graph --abbrev-commit --decorate --pretty=oneline --color=always
+        lsa = log --graph --abbrev-commit --decorate --pretty=oneline --all --color=always
+        ll = log --graph
+        lla = log --graph --all
+        br = branch
+        ch = checkout
+		d = difftool
+		dt = difftool
+        lo = log --stat
+        sh = show
+        st = status -uno
+        ad = add
+        co = commit
+        din = diff --name-only
+        ckpt = commit -m 'CKPT - Change workspace' -a
+[diff]
+        tool = vimdiff
+[user]
+        email = rox_wu@arcadyan.com.tw
+        name = Rox Wu
+[commit]
+        template = ~/.git-commit-template
+[color]
+	ui = auto
 [apply]
 	whitespace = nowarn
-[core]
-	editor = vim
-[user]
-	name = rox
-	email = seellk@gmail.com
-[diff]
-	tool = vimdiff
 [difftool]
 	prompt = false
-[credential]
-	helper = store
 [mergetool "vimdiff3"]
 	cmd = vim -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"\n
 [merge]
