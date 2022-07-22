@@ -115,6 +115,10 @@ Plug 'dense-analysis/ale'
 " color theme
 Plug 'tomasr/molokai'
 
+"" file autocompletion 
+Plug 'junegunn/fzf',  { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
 " Plug 'scrooloose/syntastic'
 
 " version control 
@@ -139,7 +143,7 @@ Plug 'tpope/vim-unimpaired'
 
 " http://vimcasts.org/blog/2013/01/oil-and-vinegar-split-windows-and-project-drawer/
 " project viewer
-Plug 'justinmk/vim-dirvish'
+" Plug 'justinmk/vim-dirvish'
 
 " header / source file change
 Plug 'vim-scripts/a.vim'
@@ -407,3 +411,17 @@ let g:airline#extensions#branch#displayed_head_limit = 10
 " if &diff
 "   let g:color_coded_enabled = 0
 " endif
+"
+" 
+" "-------------------------------------------------------------------------------
+" netrw - built-in file broswer 
+" "-------------------------------------------------------------------------------
+"	let g:netrw_banner = 0
+"	let g:netrw_liststyle = 3
+"	let g:netrw_browse_split = 4
+"	let g:netrw_altv = 1
+"	let g:netrw_winsize = 25
+"	augroup ProjectDrawer
+"		autocmd!
+"		autocmd VimEnter * :Vexplore
+"	augroup END
