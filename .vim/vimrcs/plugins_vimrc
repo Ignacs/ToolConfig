@@ -6,79 +6,6 @@ set rtp +=~/.vim/plugged,~/.vim/plugged/*/autoload/
 " source ~/.vim/plugins/gtags-cscope.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" neobundle
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" let iCanHazNeoBundle=1
-" let neobundle_readme=expand('~/.vim/bundle/neobundle.vim/README.md')
-" if !filereadable(neobundle_readme)
-" 	echo "Installing NeoBundle.."
-" 	echo ""
-" 	silent !mkdir -p ~/.vim/bundle
-" 	silent !git clone https://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
-" 	let iCanHazNeoBundle=0
-" 	ehco "Execute :NeoBundleInstall(!) in vim to install plugins"
-" endif
-" 
-" if has('vim_starting')
-" 	set nocompatible               " Be iMproved
-" 	set runtimepath+=~/.vim/bundle/neobundle.vim/
-" endif
-" 
-" 
-" call neobundle#begin(expand('~/.vim/bundle/'))
-" 
-" " Let NeoBundle manage NeoBundle
-" NeoBundleFetch 'Shougo/neobundle.vim'
-" 
-" " Recommended to install
-" " After install,  turn shell ~/.vim/bundle/vimproc,  (n, g)make -f
-" "    your_machines_makefile
-" NeoBundle 'Shougo/vimproc'
-
-
-" 
-" 
-" " My Bundles here:
-" "
-" " Note: You don't set neobundle setting in .gvimrc!
-" " Original repos on github
-" 
-" " -> Add plugins path here <-
-" 
-" "  EX:  plugins nerdtree https://github.com/scrooloose/nerdtree 
-" "  the plugins path is 'scrooloose/nerdtree'
-" NeoBundle 'scrooloose/nerdtree'
-" 
-" " NeoBundle 'skywind3000/quickmenu.vim'
-" NeoBundle 'skywind3000/vim-preview'
-" NeoBundle 'ludovicchabant/vim-gutentags'
-" NeoBundle 'skywind3000/gutentags_plus'
-" NeoBundle 'ycm-core/YouCompleteMe'
-" NeoBundle 'aceofall/gtags.vim'
-" NeoBundle 'multilobyte/gtags-cscope'
-"   
-" 
-" 
-" """ end """
-" call neobundle#end()
-" 
-" filetype plugin indent on     " Required!
-" "
-" " Brief help
-" " :NeoBundleList          - list configured bundles
-" " :NeoBundleInstall(!)    - install(update) bundles
-" " :NeoBundleClean(!)      - confirm(or auto-approve) removal of
-" " unused bundles
-" 
-" " Installation check.
-" NeoBundleCheck
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" end of neobundle
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vim-plug 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let iCanHazVimPlug=1
@@ -108,12 +35,18 @@ Plug 'skywind3000/quickmenu.vim'
 " Plug 'skywind3000/gutentags_plus'
 " Plug 'multilobyte/gtags-cscope' " vim-plug cannot source it
 
-" C lang
-Plug 'dense-analysis/ale'
+" lang
+" Plug 'dense-analysis/ale'
 " Plug 'jeaye/color_coded'
+"
+Plug 'neoclide/coc.nvim',  {'branch': 'release'}
+so ~/.vim/vimrcs/coc-config.vim
 
 " color theme
 Plug 'tomasr/molokai'
+
+" display color by color code from make's output 
+Plug 'powerman/vim-plugin-AnsiEsc'
 
 "" file autocompletion 
 Plug 'junegunn/fzf',  { 'do': { -> fzf#install() } }
