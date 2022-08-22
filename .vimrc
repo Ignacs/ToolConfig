@@ -1,15 +1,4 @@
-"set path^=/home/ignacs/lab/local_working/SEI_PPP_customized/app/gpl/ppp-2.4.7/pppd
-" set path^=/home/ignacs/lab/local_working/SEI_PPP_customized/app/gpl/ppp-2.4.7/pppd/plugins/rp-pppoe/
-" set path^=/home/ignacs/lab/local_working/SEI_PPP_customized/app/gpl/busybox-1.33.1/
-set path^=/home/ignacs/lab/local_working/SEI_PPP_customized/app/private/rtm_util
-"set path^=/home/ignacs/lab/local_working/branch_ezmesh/app/private/dpmd/ca8289_adapter
-"set path^=/home/ignacs/lab/local_working/branch_ezmesh/app/private/dpmd/adp
-"set path^=/home/ignacs/lab/local_working/branch_ezmesh/app/private/dpmd/
-"set path^=/home/ignacs/lab/local_working/branch_ezmesh/qca/src/qca-wsplcd
-"set path^=/home/ignacs/lab/local_working/branch_ezmesh/app/private/wdwdv3 
-"set path^=/home/ignacs/lab/local_working/branch_ezmesh/lib/public/wdw/
-"set path^=/home/ignacs/lab/local_working/branch_ezmesh/qca/src/qca-ezmesh/src
-"set path^=/home/ignacs/lab/local_working/branch_ezmesh/qca/src/qca-ezmesh/services/mapConfigService/
+"set path^=/home1/rox_wu/lab/local_working/SEI_PPP_customized/app/gpl/ppp-2.4.7/pppd
 
 " Source a global configuration file if available
 " if filereadable("/etc/vim/vimrc.local")
