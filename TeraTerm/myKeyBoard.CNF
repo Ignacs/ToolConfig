@@ -193,10 +193,11 @@ ScrollLock=70
 ;	Ctrl + F5 key: Executing a menu command
 ;User5=1087,3,50110
 [User keys]
-; ctrl + a : 
+; ctrl + shift + a : 
 ;		execute tera-term menu command 
 ;		[Edit] Select all                   50290
-User1=1054,3,50290
+; 		(ctrl+a is using in command line : "Go to the begin of cmd line"
+User1=1566,3,50290
 
 ; ctrl + o : 
 ;		execute tera-term menu command 
@@ -216,15 +217,18 @@ User4=349,3,50375
 User5=1574,3,50120
 
 
-; shift + esc : 
+; ctrl + shift + c : 
 ;		execute tera-term menu command 
 ;		[Edit] Cancel selection             50270
-User6=513,3,50270
+User6=1582,3,50270
 
 ; Ctrl + shift + d
-; [File] Change dir                   50170
+; 		[File] Change dir                   50170
 User7=1568,3,50170
 
+; Ctrl + shift + b
+;		[Edit] Clear buffer                 50260
+User8=1065,3,50260
 
 ;-- SetWindowPos(HWND_TOP)           55001 (not in menu)
 ; ctrl + alt + - : 
