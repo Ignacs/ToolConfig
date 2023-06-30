@@ -177,12 +177,12 @@ LocalEcho=off
 ScrollLock=70
 
 ;Example of user key definitions.
-;[User keys]
+[User keys]
 ;	Ctrl + F1 key: character string
-;User1=1083,0,telnet myhost
+User9=1083,0,killall -9  
 ;
 ;	Ctrl + F2 key: control characters
-;User2=1084,0,$0D$0A
+User10=1084,0,test
 ;
 ;	Ctrl + F3 key: CR character with new-line code conversion (CR -> CR/CR+LF)
 ;User3=1085,1,$0D
@@ -192,11 +192,11 @@ ScrollLock=70
 ;
 ;	Ctrl + F5 key: Executing a menu command
 ;User5=1087,3,50110
-[User keys]
+
 ; ctrl + shift + a : 
 ;		execute tera-term menu command 
 ;		[Edit] Select all                   50290
-; 		(ctrl+a is using in command line : "Go to the begin of cmd line"
+; 		(ctrl+a is using in command line : "Go to the begin of cmd line")
 User1=1566,3,50290
 
 ; ctrl + o : 
