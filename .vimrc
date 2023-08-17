@@ -1,4 +1,6 @@
 "set path^=/home1/rox_wu/lab/local_working/SEI_PPP_customized/app/gpl/ppp-2.4.7/pppd
+set path^=~/lab/charter_proejct/ca-oam-1.0/files
+
 
 " Source a global configuration file if available
 " if filereadable("/etc/vim/vimrc.local")

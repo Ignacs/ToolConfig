@@ -24,9 +24,19 @@ set backspace=indent,eol,start
 
 " keep a backup file
 " set backup                      
+set nobackup                      
+set nowritebackup                      
 
 " specified backup folder
-set backupdir=./.backup,.,/tmp 	
+" set backupdir=./.backup,.,/tmp 	
+"
+" Automatically create .backup directory, writable by the group.
+" if filewritable(".") && ! filewritable(".backup")
+" 	silent execute '!umask 002; mkdir .backup'
+" endif
+" 
+" specified swap folder
+set directory=.,./.backup,/tmp	
 
 " which directory to use for the file browser
 set browsedir=current           
@@ -59,8 +69,6 @@ set cursorcolumn
 " Modify background color of Cursorcolumn, remove the underline of cursorcolumn
 hi Cursorcolumn cterm=NONE ctermbg=DarkGrey guibg=#771c1c 
 
-" specified swap folder
-set directory=.,./.backup,/tmp	
 
 " Replace Tab with space
 " set expandtab
@@ -113,7 +121,10 @@ set hls
 set hid
 
 " keep lines of command line history
-" set history=50                  
+" set history=9999
+
+" Set amount of command lines
+" set lines=30
 
 " Ignore case when search
 set ic
@@ -228,11 +239,6 @@ if has("syntax")
 endif
 
 
-" Automatically create .backup directory, writable by the group.
-if filewritable(".") && ! filewritable(".backup")
-	silent execute '!umask 002; mkdir .backup'
-endif
-
 " Delete trailing white space on save, useful for some filetypes ;)
 fun! CleanExtraSpaces()
     let save_cursor = getpos(".")
@@ -246,19 +252,27 @@ if has("autocmd")
     autocmd BufWritePre *.c,*.h,*.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 endif
 
-" ignore space in diffmode
-if &diff
-     map gs :call IwhiteToggle()<CR>
-     function! IwhiteToggle()
-       if &diffopt =~ 'iwhite'
-         	set diffopt-=iwhite
-       else
-         	set diffopt+=iwhite
-       endif
-     endfunction
- endif
 
 " use patience algrothm to diff
 if has("patch-8.1.0360")
     set diffopt+=internal,algorithm:patience
 endif
+
+
+" Save vim buffers 
+func! ExportBufbyRedirt() abort
+    redir! > ./.VimBuffExport
+	:buf
+    redir END
+endfunc
+
+augroup save_files | au!
+    au VimLeave * call ExportBufbyRedirt()
+augroup end
+
+" ctags , reload tags when save the *.c files, 
+autocmd BufWritePost *.c silent! !ctags -R &
+
+
+" auto save the opened files into a session file
+autocmd VimLeave * mksession! ~/.vim_auto_session.vim

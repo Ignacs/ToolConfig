@@ -88,6 +88,7 @@ Plug 'Shougo/echodoc.vim'
 Plug 'vim-airline/vim-airline' , { 'for':['c',  'cpp',  'vim',  'java'] }
 Plug 'vim-airline/vim-airline-themes'
 
+Plug 'powerman/vim-plugin-AnsiEsc'
 
 " enhanced diff
 Plug 'chrisbra/vim-diff-enhanced'
@@ -151,9 +152,13 @@ hi! SpellRare gui=undercurl guisp=magenta
 let g:ale_sign_column_always = 1
 
 
+" let g:ale_fixers = {
+" \   'c': ['gcc'],
+" \   'cpp': ['gcc'],
+" \}
 let g:ale_fixers = {
-\   'c': ['gcc'],
-\   'cpp': ['gcc'],
+\   'c': ['clang-format'],
+\   'cpp': ['clang-format'] , 
 \}
 " let g:ale_linters = {
 " \   'javascript': ['eslint'],
@@ -167,12 +172,17 @@ let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_lint_on_enter = 1
 let g:ale_set_signs = 1
+let g:ale_cpp_ccls_init_options = {
+\ 	'cache': {
+\ 		'directory':'/tmp/ccls/cache'
+\ 	}
+\ }
 
 
 "-------------------------------------------------------------------------------
 " mhinz/vim-signify
 "-------------------------------------------------------------------------------
-" set signcolumn=yes
+set signcolumn=yes
 
 "-------------------------------------------------------------------------------
 " ycm
@@ -218,30 +228,32 @@ let g:Lf_PreviewResult = {'Function':0,  'BufTag':0}
 "let g:airline#extensions#tabline#enabled = 1   " enable tabline
 "" fonts
 let g:airline_powerline_fonts = 1
-let g:airline_theme='bubblegum' " select theme
+let g:airline_theme='seagull' " select theme
 let g:airline#extensions#tabline#enabled=1    "Smarter tab line: window / buffer
+" let g:airline#extensions#tabline#fnamemod      = ':~' " full path
+let g:airline#extensions#tabline#fnamemod=':t' " file name only
 "let g:airline#extensions#tabline#left_sep = ' '  "separater
-""let g:airline#extensions#tabline#left_alt_sep = '|'  "separater
-"let g:airline#extensions#tabline#formatter = 'default'  "formater
-let g:airline_left_sep=''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
+"let g:airline#extensions#tabline#left_alt_sep = '|'  "separater
+let g:airline#extensions#tabline#formatter = 'default'  "formater
+let g:airline#extensions#tabline#fnamecollapse = 0
+" show buffer index 
+let g:airline#extensions#tabline#buffer_nr_show = 1
+"let g:airline_left_sep=''
+"let g:airline_left_alt_sep = ''
+"let g:airline_right_sep = ''
+"let g:airline_right_alt_sep = ''
 
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
 endif
-let g:airline_symbols.linenr                   = ''
-let g:airline_symbols.maxlinenr                = '' 
+"let g:airline_symbols.linenr                   = ''
+"let g:airline_symbols.maxlinenr                = '' 
 let w:airline_skip_empty_sections              = 1
 " let g:airline_section_b                        = '%{fugitive#head()}'
-let g:airline_section_c                        = ''
+"let g:airline_section_c                        = ''
 let g:airline_section_x                        = '%{&filetype}'
-let g:airline_section_warning                  = ''
+"let g:airline_section_warning                  = ''
 
-let g:airline#extensions#tabline#enabled       = 1
-let g:airline#extensions#tabline#fnamemod      = ':~'
-let g:airline#extensions#tabline#fnamecollapse = 0
 
 let g:airline#extensions#branch#enabled              = 1
 let g:airline#extensions#branch#displayed_head_limit = 10
@@ -281,8 +293,8 @@ let g:airline#extensions#branch#displayed_head_limit = 10
 " let g:syntastic_enable_signs = 1
 " " Auto open Locaton List, if syntastic conflicts with other plugin , close it
 " let g:syntastic_always_populate_loc_list = 1
-" " Auto open Locaton List, default is 2, error detected doesn't open Location list, auto close when fixed error 
-" " 1 : auto close / open 
+" Auto open Locaton List, default is 2, error detected doesn't open Location list, auto close when fixed error 
+" 1 : auto close / open 
 " " 0 : no action
 " " 3 : auto open , doesn't close auto
 " let g:syntastic_auto_loc_list = 1
@@ -358,3 +370,36 @@ let g:airline#extensions#branch#displayed_head_limit = 10
 "		autocmd!
 "		autocmd VimEnter * :Vexplore
 "	augroup END
+"
+"-------------------------------------------------------------------------------
+" "AnsiEsc" - Display ansi color code
+"-------------------------------------------------------------------------------
+nmap  <silent> <F9>        :AnsiEsc<CR>
+
+function! Tabline() abort
+    let l:line = ''
+    let l:current = tabpagenr()
+
+    for l:i in range(1, tabpagenr('$'))
+        if l:i == l:current
+            let l:line .= '%#TabLineSel#'
+        else
+            let l:line .= '%#TabLine#'
+        endif
+
+        let l:label = fnamemodify(
+            \ bufname(tabpagebuflist(l:i)[tabpagewinnr(l:i) - 1]),
+            \ ':t'
+        \ )
+
+        let l:line .= '%' . i . 'T' " Starts mouse click target region.
+        let l:line .= '  ' . l:label . '  '
+    endfor
+
+    let l:line .= '%#TabLineFill#'
+    let l:line .= '%T' " Ends mouse click target region(s).
+
+    return l:line
+endfunction
+
+set tabline=%!Tabline()

@@ -7,7 +7,8 @@
 set background=dark
 
 " color setting
-colorscheme molokai 
+" colorscheme molokai 
+colorscheme torte
 " colorscheme phd
 " colorscheme solarized
 
@@ -41,7 +42,7 @@ if &diff
 	" colorscheme solarized  
 	" colorscheme torte  
 	" colorscheme zellner
-
+	colorscheme industry
 
 	" highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
 	" highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=Red
