@@ -182,10 +182,11 @@ ScrollLock=70
 User9=1083,0,killall -9  
 ;
 ;	Ctrl + F2 key: control characters
-User10=1084,0,test
+User10=1084,0,tc -s filter show dev epon0 ingress 
 ;
 ;	Ctrl + F3 key: CR character with new-line code conversion (CR -> CR/CR+LF)
 ;User3=1085,1,$0D
+User12=1085,0,tc -s filter show dev epon0 egress 
 ;
 ;	Ctrl + F4 key: Executing a macro file
 ;User4=1086,2,test.ttl
@@ -198,6 +199,11 @@ User10=1084,0,test
 ;		[Edit] Select all                   50290
 ; 		(ctrl+a is using in command line : "Go to the begin of cmd line")
 User1=1566,3,50290
+
+; ctrl + v : 
+;		execute tera-term menu command 
+;		[Edit] Paste                 50230
+User11=1071,3,50230
 
 ; ctrl + o : 
 ;		execute tera-term menu command 
@@ -216,7 +222,6 @@ User4=349,3,50375
 ;		[File] Log                          50120
 User5=1574,3,50120
 
-
 ; ctrl + shift + c : 
 ;		execute tera-term menu command 
 ;		[Edit] Cancel selection             50270
@@ -228,7 +233,7 @@ User7=1568,3,50170
 
 ; Ctrl + shift + b
 ;		[Edit] Clear buffer                 50260
-User8=1065,3,50260
+User8=1584,3,50260
 
 ;-- SetWindowPos(HWND_TOP)           55001 (not in menu)
 ; ctrl + alt + - : 
@@ -237,4 +242,271 @@ User8=1065,3,50260
 ;-- SetWindowPos(HWND_BOTTOM)        55002 (not in menu)
 ;-- SetWindowPos(HWND_TOPMOST)       55003 (not in menu)
 ;-- SetWindowPos(HWND_NOTOPMOST)     55004 (not in menu)
+
+
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User12=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User13=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User14=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User15=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User16=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User17=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User18=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User19=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User20=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User21=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User22=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User23=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User24=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User25=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User26=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User27=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User28=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User29=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User30=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User31=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User32=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User33=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User34=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User35=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User36=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User37=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User38=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User39=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User40=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User41=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User42=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User43=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User44=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User45=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User46=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User47=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User48=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User49=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User50=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User51=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User52=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User53=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User54=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User55=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User56=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User57=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User58=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User59=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User60=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User61=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User62=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User63=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User64=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User65=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User66=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User67=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User68=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User69=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User70=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User71=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User72=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User73=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User74=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User75=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User76=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User77=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User78=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User79=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User80=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User81=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User82=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User83=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User84=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User85=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User86=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User87=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User88=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User89=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User90=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User91=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User92=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User93=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User94=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User95=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User96=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User97=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User98=,0,
+;	ctrl + shift + F? key: user defined string
+;	ctrl + shift + np? key: user defined string
+; User99=,0,
+
 
