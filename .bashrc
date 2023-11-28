@@ -35,11 +35,11 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 # You want $TERM to be screen-256color when tmux is running,  and you want it to be xterm-256color when tmux is not running.
-if [ "$TERM" = "screen" ] && [ -n "$TMUX" ]; then
-	  export TERM=screen-256color
-else
-	  export TERM=xterm-256color
-fi
+# if [ "$TERM" = "screen" ] && [ -n "$TMUX" ]; then
+# 	  export TERM=screen-256color
+# else
+# 	  export TERM=xterm-256color
+# fi
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
@@ -120,7 +120,12 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-export PATH="~/usrbins/:$PATH"
+
+### Under native-linux 
+# export PATH="~/usrbins/:$PATH"
+### Under WSL
+export PATH="/mnt/d/github/scripts/BashScript:$PATH"
+
 export EDITOR=vim
 # PS1="\h: [\w]$ "
 # export PS1="\[\e[32;0m\]\u@\h<\!> [\w]>\j [\A]\\$ \[\e[0m\]"
@@ -135,3 +140,39 @@ PS1='\[\033[01;33m\]\n[\w]\n\[\033[35m\]\!\[\033[00m\]:${debian_chroot:+($debian
 alias tmux="tmux -2"
 
 alias ctags="/snap/universal-ctags/current/bin/ctags"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+set t_ut=
+
+export FZF_DEFAULT_COMMAND="rg --files"
+
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+## Execute  "fe" to find file then open by vim
+fe() {
+  local files
+  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+}
+
+## Execute "fd" to search folder by fzf
+fd() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+				  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
+
+# fkill - kill process
+fkill() {
+  local pid
+  pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+
+  if [ "x$pid" != "x" ]
+  then
+	echo $pid | xargs kill -${1:-9}
+  fi
+}
