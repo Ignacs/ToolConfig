@@ -78,8 +78,6 @@ hi Cursorcolumn cterm=NONE ctermbg=DarkGrey guibg=#771c1c
 "
 " set tenc=big-5
 
-" 'foldmethod'
-set fdm=indent
 
 " 'foldcolumn'
 " When non-zero, a column with the specified width is shown at the side
@@ -155,7 +153,8 @@ set magic
 set foldenable
 
 "set foldmethod=syntax
-set foldmethod=indent
+" set fdm=indent
+set fdm=syntax
 
 " depth of fold at begin of line 
 set foldcolumn=1
