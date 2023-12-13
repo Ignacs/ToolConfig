@@ -96,9 +96,9 @@ xnoremap  `  s``<Esc>P<Right>
 "-------------------------------------------------------------------------------
 " Change the working directory to the directory containing the current file
 "-------------------------------------------------------------------------------
-if has("autocmd")
-  autocmd BufEnter * :lchdir %:p:h
-endif " has("autocmd")
+" if has("autocmd")
+"   autocmd BufEnter * :lchdir %:p:h
+" endif " has("autocmd")
 "
 "
 " Map auto complete of (, ", ', [
@@ -254,3 +254,13 @@ if &diff
 		endif
     endfunction
 endif
+
+
+"-------------------------------------------------------------------------------
+" mapping commands in buffers
+"-------------------------------------------------------------------------------
+" Alt + right key => next buf 
+nmap <A-Right>  :bnext<CR>  
+" Alt + left key => previous buff
+nmap <A-Left>   :bprev<CR>
+
