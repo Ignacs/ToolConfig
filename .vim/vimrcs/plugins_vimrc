@@ -29,13 +29,14 @@ Plug 'scrooloose/nerdtree',  { 'on':  'NERDTreeToggle' }
 
 Plug 'junegunn/vim-easy-align'
 Plug 'skywind3000/quickmenu.vim'
+Plug 'vim-scripts/taglist.vim'
 
 
 " c tags
 " Plug 'skywind3000/gutentags_plus'
 " Plug 'multilobyte/gtags-cscope' " vim-plug cannot source it
 
-" lang
+" C lang
 " Plug 'dense-analysis/ale'
 " Plug 'jeaye/color_coded'
 "
@@ -49,14 +50,18 @@ Plug 'tomasr/molokai'
 Plug 'powerman/vim-plugin-AnsiEsc'
 
 "" file autocompletion 
-Plug 'junegunn/fzf',  { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+
+"" full path fuzzy file,  buffer, mru, tag, ...finder for vim
+Plug 'ctrlpvim/ctrlp.vim'
+
 
 " Plug 'scrooloose/syntastic'
 
 " version control 
 " Plug 'mhinz/vim-signify'
-" Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 
 " text object : statemanet, word 
@@ -88,8 +93,6 @@ Plug 'Shougo/echodoc.vim'
 Plug 'vim-airline/vim-airline' , { 'for':['c',  'cpp',  'vim',  'java'] }
 Plug 'vim-airline/vim-airline-themes'
 
-Plug 'powerman/vim-plugin-AnsiEsc'
-
 " enhanced diff
 Plug 'chrisbra/vim-diff-enhanced'
 call plug#end()
@@ -100,7 +103,7 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " nerdtree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap  <silent> <F4>        :NERDTreeToggle<CR>
+" nmap  <silent> <F4>        :NERDTreeToggle<CR>
 
 
 
@@ -197,9 +200,9 @@ let g:ycm_key_invoke_completion = '<c-z>'
 set completeopt=menu,menuone
 noremap <c-z> <NOP>
 let g:ycm_semantic_triggers =  {
-           \ 'c, cpp, python, java, go, erlang, perl': ['re!\w{2}'], 
-           \ 'cs, lua, javascript': ['re!\w{2}'], 
-           \ }
+	\ 'c, cpp, python, java, go, erlang, perl': ['re!\w{2}'], 
+	\ 'cs, lua, javascript': ['re!\w{2}'], 
+	\ }
 
 "-------------------------------------------------------------------------------
 " Plug 'Yggdroot/LeaderF' " function list
@@ -225,7 +228,6 @@ let g:Lf_PreviewResult = {'Function':0,  'BufTag':0}
 "-------------------------------------------------------------------------------
 "" @airline
 "-------------------------------------------------------------------------------
-"let g:airline#extensions#tabline#enabled = 1   " enable tabline
 "" fonts
 let g:airline_powerline_fonts = 1
 let g:airline_theme='seagull' " select theme
@@ -275,10 +277,10 @@ let g:airline#extensions#branch#displayed_head_limit = 10
 " let g:syntastic_python_checkers=['pyflakes']
 " let g:syntastic_javascript_checkers = ['jsl', 'jshint']
 " let g:syntastic_html_checkers=['tidy', 'jshint']
-" 
+
 " highlight SyntasticErrorSign guifg=white guibg=black
-" 
-" " to see error location list
+
+" to see error location list
 " function! ToggleErrors()
 "     let old_last_winnr = winnr('$')
 "     lclose
@@ -293,8 +295,8 @@ let g:airline#extensions#branch#displayed_head_limit = 10
 " let g:syntastic_enable_signs = 1
 " " Auto open Locaton List, if syntastic conflicts with other plugin , close it
 " let g:syntastic_always_populate_loc_list = 1
-" Auto open Locaton List, default is 2, error detected doesn't open Location list, auto close when fixed error 
-" 1 : auto close / open 
+" Auto open Locaton List, default is 2, error detected doesn't open Location list, auto close when fixed error
+" " 1 : auto close / open
 " " 0 : no action
 " " 3 : auto open , doesn't close auto
 " let g:syntastic_auto_loc_list = 1
@@ -302,11 +304,11 @@ let g:airline#extensions#branch#displayed_head_limit = 10
 " let g:syntastic_loc_list_height = 5
 " " check when open
 " let g:syntastic_check_on_open = 1
-" " auto jump to error 
+" " auto jump to error
 " let g:syntastic_auto_jump = 0
 " " check real-time, if response lag, chage to 1
 " let g:syntastic_check_on_wq = 0
-" " highligth error 
+" " highligth error
 " let g:syntastic_enable_highlighting=1
 " " syntastic support C++11
 " " let g:syntastic_cpp_compiler = 'clang++'
@@ -314,7 +316,7 @@ let g:airline#extensions#branch#displayed_head_limit = 10
 " let g:syntastic_cpp_checkers = ['gcc']
 " let g:syntastic_cpp_compiler = 'gcc'
 " let g:syntastic_cpp_compiler_options = '-std=c++11'
-" " python linter 
+" " python linter
 " let g:syntastic_python_checkers = ['pyflakes']
 " "fixed syntastic :lnext :lprev jumping error, mapping to sn / sp
 " function! <SID>LocationPrevious()                       
@@ -403,3 +405,27 @@ function! Tabline() abort
 endfunction
 
 set tabline=%!Tabline()
+
+
+"-------------------------------------------------------------------------------
+" "vim-gutentags" - Auto regenerate tags files
+"-------------------------------------------------------------------------------
+" let g:gutentags_enabled = 1
+" let g:gutentags_modules = 'ctags'
+" " let g:gutentags_modules = 'cscope'
+" let g:gutentags_project_root = [ ".git" ]
+" let g:gutentags_ctags_tagfile = '.tags'
+" " let g:gutentags_exclude_filetypes = [ '' ]
+" let s:vim_tags = expand('~/.cache/tags')
+" let g:gutentags_cache_dir = s:vim_tags
+" let g:gutentags_ctags_extra_args = ['-R', '--append']
+" let g:gutentags_ctags_extra_args += ['--fields=+niazmS', '--extra=+fq']
+" let g:gutentags_ctags_extra_args += ['--exclude=.git']
+" let g:gutentags_ctags_extra_args += [ '--c-kinds=+px' ] 
+" let g:gutentags_ctags_extra_args += [ '--c++-kinds=+pxI' ]
+" let g:gutentags_cscope_build_inverted_index = 1
+
+"-------------------------------------------------------------------------------
+" "ctrlp" 
+"-------------------------------------------------------------------------------
+let g:ctrlp_working_path_mode = 'ra'

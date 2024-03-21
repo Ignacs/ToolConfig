@@ -274,4 +274,25 @@ autocmd BufWritePost *.c silent! !ctags -R &
 
 
 " auto save the opened files into a session file
-autocmd VimLeave * mksession! ~/.vim_auto_session.vim
+fu! SaveSess()
+	execute '!cp ~/.vim_auto_session.vim ~/.vim_auto_session.vim.old'
+    "execute 'call mkdir(%:p:h/.vim)'
+	execute 'mksession! ~/.vim_auto_session.vim'
+    "execute 'mksession! %:p:h/.vim/session.vim'
+endfunction
+
+fu! RestoreSess()
+"	 execute 'echo system("date +%y%m%d_%H%M")'
+" execute 'so %:p:h/.vim/session.vim'
+"if bufexists(1)
+"    for l in range(1, bufnr('$'))
+"        if bufwinnr(l) == -1
+"            exec 'sbuffer ' . l
+"        endif
+"    endfor
+"endif
+endfunction
+
+autocmd VimLeave * call SaveSess()
+" autocmd VimEnter * call RestoreSess()
+

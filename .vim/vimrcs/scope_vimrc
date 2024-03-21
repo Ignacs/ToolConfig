@@ -10,7 +10,7 @@ if has("cscope")
     set csprg=/usr/bin/cscope
     set csto=0 "use cscope as default tag
     set cst
-    set nocsverb
+    " set nocsverb
 	" there is a built-in plugin: cscope_map.vim 
 	" " add any database in current directory
     " add in cscope_maps.plugins
@@ -156,7 +156,8 @@ if has('cscope')
             set cscopeverbose
         endif
     endfunction
-    " au BufEnter /* call LoadCscope()
+
+    au BufEnter * call LoadCscope()
     au BufWritePost * call LoadCscope()
 	nnoremap T :cs find c <C-R>=expand("<cword>")<CR><CR>
     nnoremap t <C-]>

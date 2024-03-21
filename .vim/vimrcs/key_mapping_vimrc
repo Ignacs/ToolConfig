@@ -1,7 +1,6 @@
 " define leader 
 let mapleader=";"
 
-
 "-------------------------------------------------------------------------------
 "  Hot keys
 "-------------------------------------------------------------------------------
@@ -46,6 +45,7 @@ map   <silent> <F2>        :set nu! nu?<CR><Esc>:set relativenumber!  relativenu
 " map   <silent> <F3>        :Explore<CR>
 map   <silent> <F3>        :set wrap! wrap?<CR><Esc>
 "nmap  <silent> <F4>        :exe ":ptag ".expand("<cword>")<CR>
+nmap  <silent> <F4>        :Tlist<CR>
 map   <silent> <F5>        :copen<CR>
 map   <silent> <F6>        :cclose<CR>
 map   <silent> <F7>        :cp<CR>
@@ -122,7 +122,8 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 " map <C-F11> i <C-R>=strftime("20%y%m%d %H:%M:%S")<BAR><CR>
 
 " switch between header/source with F4
-map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+" map <F4> :e %:p:s,.h$,.X123X,:s,.cpp$,.h,:s,.X123X$,.cpp,<CR>
+"
 " recreate tags file with F5
  "map <F5> :!ctags -R ¡Vc++-kinds=+p ¡Vfields=+iaS ¡Vextra=+q .<CR>
 " map <F5> :!ctags -R<CR>
