@@ -5,7 +5,7 @@
         lla = log --graph --all
         br = branch
         ch = checkout
-		d = difftool
+		d = difftool --prompt
 		dt = difftool
         lo = log --stat
         sh = show
