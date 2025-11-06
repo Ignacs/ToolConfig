@@ -5,28 +5,6 @@ set notagrelative
 """ cscope
 """"""""""""""""""""""""""""""""""""""""""""""""""
 " auto loading cscope
-"!!! in /usr/share/vim/vim74/plugin/cscope_maps.vim
-if has("cscope")
-    set csprg=/usr/bin/cscope
-    set csto=0 "use cscope as default tag
-    set cst
-    " set nocsverb
-	" there is a built-in plugin: cscope_map.vim 
-	" " add any database in current directory
-    " add in cscope_maps.plugins
-    if filereadable("cscope.out")
-        cs add cscope.out
-    " else add database pointed to by environment
-    elseif $CSCOPE_DB != ""
-        cs add $CSCOPE_DB
-    endif
-	"
-    " show msg when any other cscope db added
-    " set cscopeverbose  
-	"
-    set cscopetag
-    set cscopequickfix=s-,g-,c-,d-,t-,e-,f-,i-
-endif
 
 " nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
 " nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
@@ -140,14 +118,31 @@ nmap <silent> <leader>s <ESC>:lcs f s <c-r><c-w><cr>:lw<cr>
 
 
 if has('cscope')
+    " set csprg=/usr/bin/cscope
+    set csto=0 "use cscope as default tag
     set cscopetagorder=0
-    set cscopetag
+
+    set cst
+	" there is a built-in plugin: cscope_map.vim 
+	" " add any database in current directory
+    " add in cscope_maps.plugins
+    if filereadable("cscope.out")
+        cs add cscope.out
+    " else add database pointed to by environment
+    elseif $CSCOPE_DB != ""
+        cs add $CSCOPE_DB
+    endif
+	"
+    " show msg when any other cscope db added
+    " set nocsverb
     set cscopeverbose
-    set cscopequickfix=s-,c-,d-,i-,t-,e-
+
+    set cscopequickfix=s-,g-,c-,d-,t-,e-,f-,i-
     set cscopepathcomp=3
 
     function! LoadCscope()
-        let db = findfile("cscope.out", ".;")
+        " let db = findfile("cscope.out", ".;")
+        let db = findfile("cscope.out", ";")
         if (!empty(db))
             let path = strpart(db, 0, match(db, "/cscope.out$"))
             set nocscopeverbose " suppress 'duplicate connection' error
