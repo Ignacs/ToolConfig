@@ -23,25 +23,12 @@ endif
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdtree',  { 'on':  'NERDTreeToggle' }
-" Plug 'skywind3000/vim-preview'
 " Plug 'ludovicchabant/vim-gutentags'
 " Plug 'ycm-core/YouCompleteMe'
 
 Plug 'junegunn/vim-easy-align'
-Plug 'skywind3000/quickmenu.vim'
 Plug 'vim-scripts/taglist.vim'
 
-
-" c tags
-" Plug 'skywind3000/gutentags_plus'
-" Plug 'multilobyte/gtags-cscope' " vim-plug cannot source it
-
-" C lang
-" Plug 'dense-analysis/ale'
-" Plug 'jeaye/color_coded'
-"
-Plug 'neoclide/coc.nvim',  {'branch': 'release'}
-so ~/.vim/vimrcs/coc-config.vim
 
 " color theme
 Plug 'tomasr/molokai'
@@ -64,30 +51,13 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 
 
-" text object : statemanet, word 
-" i. and a. : argument object, can use 'di' or 'ci' in insert mode
-" ii and ai : 'vii' selecttion 'dii'/'cii' delete / replace 
-" if and af : vif / dif /cif 
-Plug 'kana/vim-textobj-user'
-Plug 'kana/vim-textobj-indent'
-Plug 'kana/vim-textobj-syntax'
-Plug 'kana/vim-textobj-function',  { 'for':['c',  'cpp',  'vim',  'java'] }
-Plug 'sgur/vim-textobj-parameter'
-
 Plug 'tpope/vim-unimpaired'
 
 " function 
 " Plug 'Yggdroot/LeaderF'
 
-" http://vimcasts.org/blog/2013/01/oil-and-vinegar-split-windows-and-project-drawer/
-" project viewer
-" Plug 'justinmk/vim-dirvish'
-
-" header / source file change
-Plug 'vim-scripts/a.vim'
-
 " prompt parameters
-Plug 'Shougo/echodoc.vim'
+" Plug 'Shougo/echodoc.vim'
 
 " statusline 
 Plug 'vim-airline/vim-airline' , { 'for':['c',  'cpp',  'vim',  'java'] }
@@ -103,7 +73,7 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " nerdtree
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" nmap  <silent> <F4>        :NERDTreeToggle<CR>
+nmap  <silent> <F4>        :NERDTreeToggle<CR>
 
 
 
@@ -211,8 +181,10 @@ let g:ycm_semantic_triggers =  {
 let g:Lf_ShortcutF = '<c-p>'
 let g:Lf_ShortcutB = '<m-n>'
 noremap <c-n> :LeaderfMru<cr>
-noremap <m-p> :LeaderfFunction!<cr>
-noremap <m-n> :LeaderfBuffer<cr>
+
+" conflicted with buffer switch 
+" noremap <m-p> :LeaderfFunction!<cr>
+" noremap <m-n> :LeaderfBuffer<cr>
 noremap <m-m> :LeaderfTag<cr>
 let g:Lf_StlSeparator = { 'left': '',  'right': '',  'font': '' }
 
