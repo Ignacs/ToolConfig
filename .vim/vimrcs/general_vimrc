@@ -141,7 +141,7 @@ set langmenu=en
 set laststatus=2
 
 " strings to use in 'list' mode
-set listchars=tab:>.,eol:\$     
+set listchars=tab:>.,eol:\$
 
 " For regular expressions turn magic on
 set magic

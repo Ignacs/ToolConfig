@@ -52,9 +52,30 @@ endif
 " (happens when dropping a file on gvim).
 "-------------------------------------------------------------------------------
 if has("autocmd")
-    autocmd BufRead *.txt set tw=78
-    autocmd BufReadPost *
-    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-    \   exe "normal g'\"" |
-    \ endif
+	autocmd BufRead *.txt set tw=78
+	autocmd BufReadPost *
+				\ if line("'\"") > 0 && line ("'\"") <= line("$") |
+				\   exe "normal g'\"" |
+				\ endif
 endif
+
+"-------------------------------------------------------------------------------
+" cursor for Operator-Pending mode
+"-------------------------------------------------------------------------------
+hi oCursor guibg=#FF0000
+set guicursor+=o:hor40-oCursor-blinkwait100-blinkon100-blinkoff100
+
+" --- Alt Key Support for Terminal/tmux ---
+" This loop maps <Esc> + [char] to <M-char> for Vim
+let s:metacode = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+let i = 0
+while i < len(s:metacode)
+  let char = s:metacode[i]
+  " Use execute to dynamically set the key codes
+  execute "set <M-" . char . ">=\e" . char
+  let i += 1
+endwhile
+
+" Important: Set timeout for key codes
+set ttimeout
+set ttimeoutlen=50  " Wait only 50ms for the next char after <Esc>
