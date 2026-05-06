@@ -260,8 +260,8 @@ endif
 "-------------------------------------------------------------------------------
 " mapping commands in buffers
 "-------------------------------------------------------------------------------
-" Alt + right key => next buf 
-nmap <A-Right>  :bnext<CR>  
-" Alt + left key => previous buff
-nmap <A-Left>   :bprev<CR>
+" Alt + n key => next buf 
+nmap <M-n>  :bnext<CR>  
+" Alt + p key => previous buff
+nmap <M-p>   :bprev<CR>
 
