@@ -176,3 +176,6 @@ fkill() {
 	echo $pid | xargs kill -${1:-9}
   fi
 }
+
+# Change operation environment becomes vi mode
+set -o vi

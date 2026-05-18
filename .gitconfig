@@ -11,7 +11,7 @@
         sh = show
         st = status -uno
         ad = add
-        co = commit
+        ci = commit
         din = diff --name-only
         ckpt = commit -m 'CKPT - Change workspace' -a
 [diff]
@@ -31,3 +31,5 @@
 	cmd = vim -f -d -c \"wincmd J\" \"$MERGED\" \"$LOCAL\" \"$BASE\" \"$REMOTE\"\n
 [merge]
 	tool = vimdiff
+[credential]
+	helper = /mnt/c/Program\\ Files/Git\\ Credential\\ Manager/git-credential-manager.exe
